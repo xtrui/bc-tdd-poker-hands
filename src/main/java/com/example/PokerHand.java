@@ -3,6 +3,8 @@ package com.example;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class PokerHand {
@@ -21,6 +23,7 @@ public class PokerHand {
                 .collect(Collectors.toCollection(HashSet::new));
         //
         if (charSet.size() == 1) {
+            //同花
             for (int i = 1; i < numberCollect.size(); i++) {
                 if (numberCollect.get(i - 1) + 1 != numberCollect.get(i)) {
                     return "no";
@@ -28,6 +31,14 @@ public class PokerHand {
             }
             return "Straight flush";
         }
+
+        Map<Integer, Long> result = numberCollect.stream().collect(Collectors.groupingBy(
+                Function.identity(), Collectors.counting()
+        ));
+        if (result.containsValue(4L)) {
+            return "Four of a kind";
+        }
+
         return "ok";
     }
 }

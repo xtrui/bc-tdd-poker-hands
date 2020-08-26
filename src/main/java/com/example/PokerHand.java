@@ -38,6 +38,9 @@ public class PokerHand {
         if (result.containsValue(4L)) {
             return "Four of a kind";
         }
+        if (result.containsValue(3L) && result.containsValue(2L)) {
+            return "Full House";
+        }
 
         return "ok";
     }

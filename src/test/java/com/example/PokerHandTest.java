@@ -44,4 +44,17 @@ public class PokerHandTest {
         //then
         assertEquals("Full House", combinationType);
     }
+
+    @Test
+    void should_return_flush_when_get_combination_type_given_2H3H5H9HKH() {
+        //given
+        String pokerCombination = "2H3H5H9HKH";
+        PokerHand pokerHand = new PokerHand();
+
+        //when
+        String combinationType = pokerHand.getCombinationType(pokerCombination);
+
+        //then
+        assertEquals("Flush", combinationType);
+    }
 }

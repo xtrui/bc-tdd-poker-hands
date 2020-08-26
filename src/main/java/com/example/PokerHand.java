@@ -1,9 +1,6 @@
 package com.example;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -11,25 +8,51 @@ public class PokerHand {
 
 
     public String getCombinationType(String pokerCombination) {
+        boolean isFlush = false;
         //
         List<String> pokers = Arrays.asList(pokerCombination.split(""));
-        List<Integer> numberCollect = pokers.stream()
-                .filter(pokerChar -> Character.isDigit(pokerChar.charAt(0)))
-                .sorted()
+        List<String> numberStrCollect = new ArrayList<>();
+
+//                pokers.stream()
+//                .filter(pokerChar -> Character.isDigit(pokerChar.charAt(0)))
+//                .sorted()
+//                .map(Integer::parseInt)
+//                .collect(Collectors.toList());
+        HashSet<String> charSet = new HashSet<>();
+//                pokers.stream()
+//                .filter(pokerChar -> !Character.isDigit(pokerChar.charAt(0)))
+//                .collect(Collectors.toCollection(HashSet::new));
+        //
+        for (int i = 0; i < pokers.size(); i++) {
+            if (i % 2 == 0) {
+                numberStrCollect.add(pokers.get(i));
+            } else {
+                charSet.add(pokers.get(i));
+            }
+        }
+
+        List<Integer> numberCollect = numberStrCollect.stream()
+                .map(numStr -> {
+                    if (Objects.equals(numStr, "A")) {
+                        return "14";
+                    }
+                    if (Objects.equals(numStr, "J")) return "11";
+                    if (Objects.equals(numStr, "Q")) return "12";
+                    if (Objects.equals(numStr, "K")) return "13";
+                    return numStr;
+                })
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        HashSet<String> charSet = pokers.stream()
-                .filter(pokerChar -> !Character.isDigit(pokerChar.charAt(0)))
-                .collect(Collectors.toCollection(HashSet::new));
-        //
         if (charSet.size() == 1) {
-            //同花
+            isFlush = true;
+            boolean isStraight = true;
             for (int i = 1; i < numberCollect.size(); i++) {
                 if (numberCollect.get(i - 1) + 1 != numberCollect.get(i)) {
-                    return "no";
+                    isStraight = false;
+                    break;
                 }
             }
-            return "Straight flush";
+            if (isStraight) return "Straight flush";
         }
 
         Map<Integer, Long> result = numberCollect.stream().collect(Collectors.groupingBy(
@@ -40,6 +63,9 @@ public class PokerHand {
         }
         if (result.containsValue(3L) && result.containsValue(2L)) {
             return "Full House";
+        }
+        if (isFlush) {
+            return "Flush";
         }
 
         return "ok";

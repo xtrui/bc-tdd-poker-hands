@@ -16,13 +16,11 @@ public class PokerHand {
                 .sorted()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        List<String> charCollect = pokers.stream()
+        HashSet<String> charSet = pokers.stream()
                 .filter(pokerChar -> !Character.isDigit(pokerChar.charAt(0)))
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(HashSet::new));
         //
-
-        HashSet<String> strings = new HashSet<>(charCollect);
-        if (strings.size() == 1) {
+        if (charSet.size() == 1) {
             for (int i = 1; i < numberCollect.size(); i++) {
                 if (numberCollect.get(i - 1) + 1 != numberCollect.get(i)) {
                     return "no";
@@ -30,9 +28,6 @@ public class PokerHand {
             }
             return "Straight flush";
         }
-
-        System.out.println(numberCollect);
-        System.out.println(charCollect);
         return "ok";
     }
 }

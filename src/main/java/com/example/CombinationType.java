@@ -16,7 +16,7 @@ public enum CombinationType {
     STRAIGHT_FLUSH("Straight flush", 9);
 
     String type;
-    private int level;
+    int level;
 
     CombinationType(String type, int level) {
         this.type = type;

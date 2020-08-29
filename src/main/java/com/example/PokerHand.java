@@ -5,24 +5,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class PokerHand {
-
-
-    public String getCombinationType(String pokerCombination) {
+    public CombinationType getCombinationType(String pokerCombination) {
         boolean isFlush = false;
-        //
         List<String> pokers = Arrays.asList(pokerCombination.split(""));
         List<String> numberStrCollect = new ArrayList<>();
 
-//                pokers.stream()
-//                .filter(pokerChar -> Character.isDigit(pokerChar.charAt(0)))
-//                .sorted()
-//                .map(Integer::parseInt)
-//                .collect(Collectors.toList());
+
         HashSet<String> charSet = new HashSet<>();
-//                pokers.stream()
-//                .filter(pokerChar -> !Character.isDigit(pokerChar.charAt(0)))
-//                .collect(Collectors.toCollection(HashSet::new));
-        //
         for (int i = 0; i < pokers.size(); i++) {
             if (i % 2 == 0) {
                 numberStrCollect.add(pokers.get(i));
@@ -52,7 +41,7 @@ public class PokerHand {
         if (charSet.size() == 1) {
             isFlush = true;
             if (isStraight(numberCollect)) {
-                return "Straight flush";
+                return CombinationType.STRAIGHT_FLUSH;
             }
         }
 
@@ -60,30 +49,30 @@ public class PokerHand {
                 Function.identity(), Collectors.counting()
         ));
         if (result.containsValue(4L)) {
-            return "Four of a kind";
+            return CombinationType.FOUR_OF_A_KIND;
         }
         if (result.containsValue(3L) && result.containsValue(2L)) {
-            return "Full House";
+            return CombinationType.FULL_HOUSE;
         }
         if (isFlush) {
-            return "Flush";
+            return CombinationType.FLUSH;
         }
 
         if (isStraight(numberCollect)) {
-            return "Straight";
+            return CombinationType.STRAIGHT;
         }
 
         if (result.containsValue(3L)) {
-            return "Three of a Kind";
+            return CombinationType.THREE_OF_A_KIND;
         }
         if (result.containsValue(2L) && result.size() == 3) {
-            return "Two Pairs";
+            return CombinationType.TWO_PAIR;
         }
         if (result.containsValue(2L)) {
-            return "Pair";
+            return CombinationType.PAIR;
         }
 
-        return "High Card";
+        return CombinationType.HIGH_CARD;
     }
 
     private boolean isStraight(List<Integer> numberCollect) {

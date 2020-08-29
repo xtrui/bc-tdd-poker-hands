@@ -13,10 +13,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Straight flush", combinationType);
+        assertEquals("Straight flush", combinationType.type);
     }
 
     @Test
@@ -26,10 +26,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Four of a kind", combinationType);
+        assertEquals("Four of a kind", combinationType.type);
     }
 
     @Test
@@ -39,10 +39,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Full House", combinationType);
+        assertEquals("Full House", combinationType.type);
     }
 
     @Test
@@ -52,10 +52,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Flush", combinationType);
+        assertEquals("Flush", combinationType.type);
     }
 
     @Test
@@ -65,10 +65,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Straight", combinationType);
+        assertEquals("Straight", combinationType.type);
     }
 
     @Test
@@ -78,10 +78,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Three of a Kind", combinationType);
+        assertEquals("Three of a Kind", combinationType.type);
     }
 
     @Test
@@ -91,10 +91,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Two Pairs", combinationType);
+        assertEquals("Two Pairs", combinationType.type);
     }
 
     @Test
@@ -104,10 +104,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("Pair", combinationType);
+        assertEquals("Pair", combinationType.type);
     }
 
     @Test
@@ -117,10 +117,10 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand();
 
         //when
-        String combinationType = pokerHand.getCombinationType(pokerCombination);
+        CombinationType combinationType = pokerHand.getCombinationType(pokerCombination);
 
         //then
-        assertEquals("High Card", combinationType);
+        assertEquals("High Card", combinationType.type);
     }
 
 }

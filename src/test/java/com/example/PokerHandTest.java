@@ -57,4 +57,18 @@ public class PokerHandTest {
         //then
         assertEquals("Flush", combinationType);
     }
+
+    @Test
+    void should_return_straight_when_get_combination_type_given_3H4D5S6C7D() {
+        //given
+        String pokerCombination = "3H4D5S6C7D";
+        PokerHand pokerHand = new PokerHand();
+
+        //when
+        String combinationType = pokerHand.getCombinationType(pokerCombination);
+
+        //then
+        assertEquals("Straight", combinationType);
+    }
+
 }

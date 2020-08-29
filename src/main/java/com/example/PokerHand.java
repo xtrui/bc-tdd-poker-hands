@@ -36,23 +36,24 @@ public class PokerHand {
                     if (Objects.equals(numStr, "A")) {
                         return "14";
                     }
-                    if (Objects.equals(numStr, "J")) return "11";
-                    if (Objects.equals(numStr, "Q")) return "12";
-                    if (Objects.equals(numStr, "K")) return "13";
+                    if (Objects.equals(numStr, "J")) {
+                        return "11";
+                    }
+                    if (Objects.equals(numStr, "Q")) {
+                        return "12";
+                    }
+                    if (Objects.equals(numStr, "K")) {
+                        return "13";
+                    }
                     return numStr;
                 })
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         if (charSet.size() == 1) {
             isFlush = true;
-            boolean isStraight = true;
-            for (int i = 1; i < numberCollect.size(); i++) {
-                if (numberCollect.get(i - 1) + 1 != numberCollect.get(i)) {
-                    isStraight = false;
-                    break;
-                }
+            if (isStraight(numberCollect)) {
+                return "Straight flush";
             }
-            if (isStraight) return "Straight flush";
         }
 
         Map<Integer, Long> result = numberCollect.stream().collect(Collectors.groupingBy(
@@ -68,6 +69,20 @@ public class PokerHand {
             return "Flush";
         }
 
+        if (isStraight(numberCollect)) {
+            return "Straight";
+        }
+
+
         return "ok";
+    }
+
+    private boolean isStraight(List<Integer> numberCollect) {
+        for (int i = 1; i < numberCollect.size(); i++) {
+            if (numberCollect.get(i - 1) + 1 != numberCollect.get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

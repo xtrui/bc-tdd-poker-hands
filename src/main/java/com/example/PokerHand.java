@@ -73,6 +73,9 @@ public class PokerHand {
             return "Straight";
         }
 
+        if (result.containsValue(3L)) {
+            return "Three of a Kind";
+        }
 
         return "ok";
     }

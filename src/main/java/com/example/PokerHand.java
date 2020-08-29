@@ -83,7 +83,7 @@ public class PokerHand {
             return "Pair";
         }
 
-        return "ok";
+        return "High Card";
     }
 
     private boolean isStraight(List<Integer> numberCollect) {

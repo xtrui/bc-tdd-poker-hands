@@ -110,4 +110,17 @@ public class PokerHandTest {
         assertEquals("Pair", combinationType);
     }
 
+    @Test
+    void should_return_High_Car_when_get_combination_type_given_3H2D5S9CKD() {
+        //given
+        String pokerCombination = "3H2D5S9CKD";
+        PokerHand pokerHand = new PokerHand();
+
+        //when
+        String combinationType = pokerHand.getCombinationType(pokerCombination);
+
+        //then
+        assertEquals("High Card", combinationType);
+    }
+
 }

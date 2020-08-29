@@ -76,6 +76,9 @@ public class PokerHand {
         if (result.containsValue(3L)) {
             return "Three of a Kind";
         }
+        if (result.containsValue(2L)) {
+            return "Two Pairs";
+        }
 
         return "ok";
     }

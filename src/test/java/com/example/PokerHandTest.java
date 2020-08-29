@@ -84,4 +84,17 @@ public class PokerHandTest {
         assertEquals("Three of a Kind", combinationType);
     }
 
+    @Test
+    void should_return_two_pairs_when_get_combination_type_given_3H3D5S9C5D() {
+        //given
+        String pokerCombination = "3H3D5S9C5D";
+        PokerHand pokerHand = new PokerHand();
+
+        //when
+        String combinationType = pokerHand.getCombinationType(pokerCombination);
+
+        //then
+        assertEquals("Two Pairs", combinationType);
+    }
+
 }
